@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <!-- css -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
     <!-- google fonts -->
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -22,6 +22,44 @@
     />
   </head>
   <body>
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="sidebar-brand" href="#home">MOVIE<span>WATCH</span>LIST</a>
+
+      <nav class="sidebar-nav" aria-label="Watchlist">
+        <p class="sidebar-label">YOUR LIBRARY</p>
+        <a class="sidebar-link active" href="#watchlist" aria-current="page">
+          <i class="fa-solid fa-film" aria-hidden="true"></i>
+          <span>My watchlist</span>
+        </a>
+        <a class="sidebar-link" href="#watched">
+          <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+          <span>Watched</span>
+        </a>
+        <a class="sidebar-link" href="#favorites">
+          <i class="fa-solid fa-heart" aria-hidden="true"></i>
+          <span>Favorites</span>
+        </a>
+      </nav>
+
+      <a class="sidebar-add" href="#add-movie">
+        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+        <span>Add a movie</span>
+      </a>
+    </aside>
+    <main class="page-content">
+      <header class="topbar">
+        <form class="search-form" role="search">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input
+            class="search-input"
+            type="search"
+            name="search"
+            placeholder="Search movies..."
+            aria-label="Search movies"
+          />
+        </form>
+      </header>
+    </main>
     <!-- JS -->
     <script src="script.js"></script>
     <!-- bootstrap JS -->
