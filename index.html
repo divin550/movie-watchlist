@@ -45,12 +45,12 @@
         </a>
       </nav>
 
-      <a class="sidebar-add" href="#add-movie">
+      <div class="sidebar-add add-btn" aria-disabled="true">
         <i class="fa-solid fa-plus" aria-hidden="true"></i>
         <span>Add a movie</span>
-      </a>
+      </div>
     </aside>
-    <main class="page-content">
+    <main class="page-content" id="watchlist">
       <header class="topbar">
         <form class="search-form" role="search">
           <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
@@ -79,6 +79,59 @@
         </div>
       </header>
     </main>
+    <section
+      class="model-overlay"
+      id="add-movie"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="add-movie-title"
+    >
+      <div class="model-backdrop" aria-hidden="true"></div>
+      <div class="model-panel">
+        <div class="model-heading">
+          <div>
+            <p class="model-eyebrow">YOUR LIBRARY</p>
+            <h1 id="add-movie-title">Add a movie</h1>
+          </div>
+        </div>
+        <form class="movie-form" action="#watchlist" method="get">
+          <label class="model-field model-field-wide">
+            <span>Movie title</span>
+            <input type="text" name="title" placeholder="e.g. The Grand Budapest Hotel" required />
+          </label>
+          <div class="model-field-row">
+            <label class="model-field">
+              <span>Genre</span>
+              <select name="genre" required>
+                <option value="" selected disabled>Select a genre</option>
+                <option>Drama</option>
+                <option>Comedy</option>
+                <option>Thriller</option>
+                <option>Sci-fi</option>
+                <option>Animation</option>
+              </select>
+            </label>
+            <label class="model-field">
+              <span>Release year</span>
+              <input type="number" name="year" placeholder="2024" min="1888" max="2100" />
+            </label>
+          </div>
+          <label class="model-field model-field-wide">
+            <span>Status</span>
+            <select name="status">
+              <option value="to-watch">To watch</option>
+              <option value="watched">Watched</option>
+            </select>
+          </label>
+          <div class="model-actions">
+            <button class="model-cancel">Cancel</button>
+            <button class="model-save" type="submit">Add to watchlist</button>
+          </div>
+          
+          </div>
+        </form>
+      </div>
+    </section>
     <!-- JS -->
     <script src="script.js"></script>
     <!-- bootstrap JS -->
