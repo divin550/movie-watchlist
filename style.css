@@ -180,6 +180,79 @@ body {
   color: var(--text-primary);
 }
 
+.movie-details-panel {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.total-movies,
+.watched,
+.to-watch {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-card);
+  border-radius: 15px;
+  height: 110px;
+  padding: 20px;
+  width: 270px;
+}
+.total-movies,
+.watched,
+.to-watch {
+  gap: 15px;
+}
+.total-movies-detail,
+.watched-detail,
+.to-watch-detail {
+  display: flex;
+  flex-direction: column;
+}
+.total-movies-detail h6,
+.watched-detail h6,
+.to-watch-detail h6 {
+  color: rgba(167, 167, 167, 0.795);
+  font-size: 0.8rem;
+}
+.total-movies-detail h5,
+.watched-detail h5,
+.to-watch-detail h5 {
+  font-size: 1.2rem;
+}
+
+.icon-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(37, 99, 235, 0.2);
+  font-size: 1.5rem;
+  color: var(--accent-blue);
+  height: 60px;
+  width: 60px;
+  border-radius: 15px;
+}
+.icon-container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #10b9813f;
+  font-size: 1.5rem;
+  color: var(--accent-green);
+  height: 60px;
+  width: 60px;
+  border-radius: 15px;
+}
+.icon-container3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f59f0b55;
+  font-size: 1.5rem;
+  color: var(--accent-orange);
+  height: 60px;
+  width: 60px;
+  border-radius: 15px;
+}
+
 .model-overlay {
   align-items: center;
   display: grid;
@@ -346,5 +419,272 @@ body {
   }
   .model-field-row {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1140px) {
+  .movie-details-panel {
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .total-movies,
+  .watched,
+  .to-watch {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    height: 80px;
+    padding: 20px;
+    width: 220px;
+  }
+  .icon-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(37, 99, 235, 0.2);
+    font-size: 1rem;
+    color: var(--accent-blue);
+    height: 40px;
+    width: 40px;
+    border-radius: 15px;
+  }
+  .icon-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #10b9813f;
+    font-size: 1rem;
+    color: var(--accent-green);
+    height: 40px;
+    width: 40px;
+    border-radius: 15px;
+  }
+  .icon-container3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f59f0b55;
+    font-size: 1rem;
+    color: var(--accent-orange);
+    height: 40px;
+    width: 40px;
+    border-radius: 15px;
+  }
+  .total-movies-detail h6,
+  .watched-detail h6,
+  .to-watch-detail h6 {
+    color: rgba(167, 167, 167, 0.795);
+    font-size: 0.8rem;
+  }
+  .total-movies-detail h5,
+  .watched-detail h5,
+  .to-watch-detail h5 {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 955px) {
+  .movie-details-panel {
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .total-movies,
+  .watched,
+  .to-watch {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    height: 60px;
+    padding: 20px;
+    width: 190px;
+  }
+  .icon-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(37, 99, 235, 0.2);
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+  }
+  .icon-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #10b9813f;
+    font-size: 0.9rem;
+    color: var(--accent-green);
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+  }
+  .icon-container3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f59f0b55;
+    font-size: 0.9rem;
+    color: var(--accent-orange);
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+  }
+  .total-movies-detail h6,
+  .watched-detail h6,
+  .to-watch-detail h6 {
+    color: rgba(167, 167, 167, 0.795);
+    font-size: 0.7rem;
+  }
+  .total-movies-detail h5,
+  .watched-detail h5,
+  .to-watch-detail h5 {
+    font-size: 0.9rem;
+  }
+  .total-movies,
+  .watched,
+  .to-watch {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 719px) {
+  .movie-details-panel {
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .total-movies,
+  .watched,
+  .to-watch {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    height: 60px;
+    padding: 20px;
+    width: 190px;
+  }
+  .icon-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(37, 99, 235, 0.2);
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+  }
+  .icon-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #10b9813f;
+    font-size: 0.9rem;
+    color: var(--accent-green);
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+  }
+  .icon-container3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f59f0b55;
+    font-size: 0.9rem;
+    color: var(--accent-orange);
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+  }
+  .total-movies-detail h6,
+  .watched-detail h6,
+  .to-watch-detail h6 {
+    color: rgba(167, 167, 167, 0.795);
+    font-size: 0.6rem;
+  }
+  .total-movies-detail h5,
+  .watched-detail h5,
+  .to-watch-detail h5 {
+    font-size: 0.9rem;
+  }
+  .total-movies,
+  .watched,
+  .to-watch {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 692px) {
+  .movie-details-panel {
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .total-movies,
+  .watched,
+  .to-watch {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    height: 60px;
+    padding: 20px;
+    width: 190px;
+  }
+  .icon-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(37, 99, 235, 0.2);
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+  }
+  .icon-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #10b9813f;
+    font-size: 0.9rem;
+    color: var(--accent-green);
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+  }
+  .icon-container3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f59f0b55;
+    font-size: 0.9rem;
+    color: var(--accent-orange);
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+  }
+  .total-movies-detail h6,
+  .watched-detail h6,
+  .to-watch-detail h6 {
+    color: rgba(167, 167, 167, 0.795);
+    font-size: 0.6rem;
+  }
+  .total-movies-detail h5,
+  .watched-detail h5,
+  .to-watch-detail h5 {
+    font-size: 0.9rem;
+  }
+  .total-movies,
+  .watched,
+  .to-watch {
+    gap: 10px;
   }
 }
