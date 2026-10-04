@@ -89,17 +89,14 @@ movieData.forEach((data) => {
     movieStatus.innerHTML = "To watch";
     movieStatus.style.backgroundColor = "#8b5cf6";
   }
-  let fav = true;
+  let fav = false;
   movieFav.addEventListener("click", (e) => {
-    console.log("clicked");
+    fav = !fav;
+    data.favourate = fav;
     if (fav === true) {
-      fav = false;
-      data.favourate = true;
       movieFav.style.color = "#fbbf24";
       movieFav.innerHTML = "<i class='fa-solid fa-heart'></i>";
     } else {
-      fav = true;
-      data.favourate = false;
       movieFav.style.color = "white";
       movieFav.innerHTML =
         "<i class='fa-regular fa-heart' aria-hidden='true'></i>";

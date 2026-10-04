@@ -229,6 +229,7 @@ body {
   font-size: 0.7rem;
   font-weight: 700;
   padding: 5px 10px;
+  cursor: pointer;
 }
 .movie-favorite {
   align-items: center;
