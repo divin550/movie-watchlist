@@ -186,8 +186,8 @@ body {
   width: 100%;
 }
 .movie-cards-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
   margin: 24px;
 }
@@ -195,7 +195,7 @@ body {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  flex: 0 0 220px;
+  min-width: 0;
   overflow: hidden;
   padding: 8px;
 }
@@ -841,5 +841,23 @@ body {
 @media (max-width: 575.98px) {
   .movie-details-panel {
     gap: 0.75rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .movie-cards-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .movie-cards-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .movie-cards-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
