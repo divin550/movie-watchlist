@@ -185,6 +185,123 @@ body {
   justify-content: space-evenly;
   width: 100%;
 }
+.movie-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 24px;
+}
+.movie-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  flex: 0 0 220px;
+  overflow: hidden;
+  padding: 8px;
+}
+.movie-poster {
+  align-items: flex-start;
+  aspect-ratio: 1 / 1;
+  background-color: var(--bg-secondary);
+  border-radius: 9px;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+}
+.movie-poster-image {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+.movie-status,
+.movie-favorite {
+  position: relative;
+  z-index: 1;
+}
+.movie-status {
+  background-color: var(--accent-green);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 5px 10px;
+}
+.movie-favorite {
+  align-items: center;
+  background: rgba(8, 15, 28, 0.72);
+  border: 1px solid rgba(232, 238, 248, 0.65);
+  border-radius: 50%;
+  color: var(--text-primary);
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
+}
+.movie-card-content {
+  padding: 12px 4px 4px;
+}
+.movie-title {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.movie-meta {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin: 0 0 8px;
+}
+.movie-meta span {
+  margin: 0 3px;
+}
+.movie-rating {
+  align-items: center;
+  color: var(--text-primary);
+  display: flex;
+  font-size: 0.8rem;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+.movie-rating i {
+  color: var(--rating-color);
+}
+.movie-card-actions {
+  display: flex;
+  gap: 8px;
+}
+.movie-edit,
+.movie-delete {
+  align-items: center;
+  border: 0;
+  border-radius: 7px;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  height: 34px;
+  justify-content: center;
+}
+.movie-edit {
+  background-color: #172a43;
+  flex: 1;
+  gap: 7px;
+}
+.movie-delete {
+  background-color: var(--accent-red);
+  width: 38px;
+}
+.movie-edit:hover {
+  background-color: var(--bg-hover);
+}
+.movie-delete:hover {
+  background-color: #dc2626;
+}
 .total-movies,
 .watched,
 .to-watch {
