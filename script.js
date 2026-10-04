@@ -94,19 +94,21 @@ movieData.forEach((data) => {
     console.log("clicked");
     if (fav === true) {
       fav = false;
+      data.favourate = true;
       movieFav.style.color = "#fbbf24";
       movieFav.innerHTML = "<i class='fa-solid fa-heart'></i>";
     } else {
       fav = true;
+      data.favourate = false;
       movieFav.style.color = "white";
       movieFav.innerHTML =
         "<i class='fa-regular fa-heart' aria-hidden='true'></i>";
     }
   });
-  const movieDelete = movieCard.querySelector(".movie-delete")
-  movieDelete.addEventListener("click", (e)=>{
-    movieCard.remove()
-  })
+  const movieDelete = movieCard.querySelector(".movie-delete");
+  movieDelete.addEventListener("click", (e) => {
+    movieCard.remove();
+  });
 });
 
 addBtn.addEventListener("click", (e) => {
