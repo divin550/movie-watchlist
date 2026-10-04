@@ -687,4 +687,7 @@ body {
   .to-watch {
     gap: 10px;
   }
+  .genre-dropdown{
+    display: none;
+  }
 }
