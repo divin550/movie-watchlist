@@ -8,7 +8,7 @@ const movieData = [
     year: 2010,
     genre: "Sci-Fi",
     image: "assets/Inception.jpg",
-    watched: true,
+    watched: false,
     favourate: false,
     ratings: 8.8,
   },
@@ -17,7 +17,7 @@ const movieData = [
     year: 2008,
     genre: "Action",
     image: "assets/darkNight.jpg",
-    watched: true,
+    watched: false,
     favourate: false,
     ratings: 8.3,
   },
@@ -35,7 +35,7 @@ const movieData = [
     year: 2017,
     genre: "Horror",
     image: "assets/IT.jpg",
-    watched: true,
+    watched: false,
     favourate: false,
     ratings: 8.9,
   },
@@ -56,7 +56,7 @@ movieData.forEach((data) => {
 
   let movieCardHTML = `<div class="movie-poster movie-poster-inception">
             <img class="movie-poster-image" src="${data.image}" />
-            <span class="movie-status">${data.watched}</span>
+            <span class="movie-status"></span>
             <button class="movie-favorite" type="button" aria-label="Add Inception to favorites">
               <i class="fa-regular fa-heart" aria-hidden="true"></i>
             </button>
@@ -83,12 +83,25 @@ movieData.forEach((data) => {
   movieCardsContainer.appendChild(movieCard);
   const movieStatus = movieCard.querySelector(".movie-status");
   const movieFav = movieCard.querySelector(".movie-favorite");
-  if (data.watched === true) {
-    movieStatus.innerHTML = "Watched";
-  } else if (data.watched === false) {
-    movieStatus.innerHTML = "To watch";
-    movieStatus.style.backgroundColor = "#8b5cf6";
-  }
+  let watch = data.watched;
+  movieStatus.innerHTML = "To watch"
+  movieStatus.style.backgroundColor = "#8b5cf6" 
+  movieStatus.addEventListener("click", (e) => {
+    watch = !watch;
+    data.watched = watch;
+
+    if (watch) {
+      console.log(data);
+      
+      movieStatus.innerHTML = "watched";
+      movieStatus.style.backgroundColor = "#10b981";
+    } else {
+      console.log(data);
+      
+      movieStatus.innerHTML = "To watch";
+      movieStatus.style.backgroundColor = "#8b5cf6";
+    }
+  });
   let fav = false;
   movieFav.addEventListener("click", (e) => {
     fav = !fav;
@@ -104,7 +117,15 @@ movieData.forEach((data) => {
   });
   const movieDelete = movieCard.querySelector(".movie-delete");
   movieDelete.addEventListener("click", (e) => {
-    movieCard.remove();
+    const newArr = movieData.filter((item)=>{
+     return item !== data
+    })
+    movieData.splice(0, movieData.length, ...newArr)
+    movieCard.remove()
+    console.log(data);
+    console.log(newArr);
+    
+
   });
 });
 
