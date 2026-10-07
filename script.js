@@ -1,6 +1,7 @@
 const popup = document.querySelector(".model-overlay");
 const addBtn = document.querySelector(".add-btn");
 const cancelBtn = document.querySelector(".model-cancel");
+const movieSave = document.querySelector(".model-save");
 
 const movieData = [
   {
@@ -49,24 +50,38 @@ const movieData = [
     ratings: 8.9,
   },
 ];
+const movieCardsContainer = document.querySelector(".movie-cards-container");
 movieData.forEach((data) => {
-  const movieCardsContainer = document.querySelector(".movie-cards-container");
+  createMovieCard(data);
+});
+
+addBtn.addEventListener("click", (e) => {
+  popup.style.display = "block";
+});
+cancelBtn.addEventListener("click", (e) => {
+  popup.style.display = "none";
+});
+movieSave.addEventListener("click", (e) => {
+  popup.style.display = "none";
+});
+
+function createMovieCard(movie) {
   const movieCard = document.createElement("div");
   movieCard.classList.add("movie-card");
 
   let movieCardHTML = `<div class="movie-poster movie-poster-inception">
-            <img class="movie-poster-image" src="${data.image}" />
+            <img class="movie-poster-image" src="${movie.image}" />
             <span class="movie-status"></span>
             <button class="movie-favorite" type="button" aria-label="Add Inception to favorites">
               <i class="fa-regular fa-heart" aria-hidden="true"></i>
             </button>
           </div>
           <div class="movie-card-content">
-            <h2 class="movie-title">${data.title}</h2>
-            <p class="movie-meta">${data.genre}<span aria-hidden="true">•</span>${data.year}</p>
+            <h2 class="movie-title">${movie.title}</h2>
+            <p class="movie-meta">${movie.genre}<span aria-hidden="true">•</span>${movie.year}</p>
             <p class="movie-rating">
               <i class="fa-solid fa-star" aria-hidden="true"></i>
-              <span>${data.ratings}</span>
+              <span>${movie.ratings}</span>
             </p>
             <div class="movie-card-actions">
               <button class="movie-edit" type="button">
@@ -83,21 +98,19 @@ movieData.forEach((data) => {
   movieCardsContainer.appendChild(movieCard);
   const movieStatus = movieCard.querySelector(".movie-status");
   const movieFav = movieCard.querySelector(".movie-favorite");
-  let watch = data.watched;
-  movieStatus.innerHTML = "To watch"
-  movieStatus.style.backgroundColor = "#8b5cf6" 
+  let watch = movie.watched;
+  movieStatus.innerHTML = "To watch";
+  movieStatus.style.backgroundColor = "#8b5cf6";
   movieStatus.addEventListener("click", (e) => {
     watch = !watch;
-    data.watched = watch;
-
+    movie.watched = watch;
     if (watch) {
-      console.log(data);
-      
-      movieStatus.innerHTML = "watched";
+      console.log(movie.watched);
+
+      movieStatus.innerHTML = "Watched";
       movieStatus.style.backgroundColor = "#10b981";
     } else {
-      console.log(data);
-      
+      console.log(movie.watched);
       movieStatus.innerHTML = "To watch";
       movieStatus.style.backgroundColor = "#8b5cf6";
     }
@@ -105,7 +118,7 @@ movieData.forEach((data) => {
   let fav = false;
   movieFav.addEventListener("click", (e) => {
     fav = !fav;
-    data.favourate = fav;
+    movie.favourate = fav;
     if (fav === true) {
       movieFav.style.color = "#fbbf24";
       movieFav.innerHTML = "<i class='fa-solid fa-heart'></i>";
@@ -117,21 +130,36 @@ movieData.forEach((data) => {
   });
   const movieDelete = movieCard.querySelector(".movie-delete");
   movieDelete.addEventListener("click", (e) => {
-    const newArr = movieData.filter((item)=>{
-     return item !== data
-    })
-    movieData.splice(0, movieData.length, ...newArr)
-    movieCard.remove()
-    console.log(data);
-    console.log(newArr);
-    
-
+    const newArr = movieData.filter((item) => {
+      return item !== movie;
+    });
+    movieData.splice(0, movieData.length, ...newArr);
+    movieCard.remove();
   });
-});
-
-addBtn.addEventListener("click", (e) => {
-  popup.style.display = "block";
-});
-cancelBtn.addEventListener("click", (e) => {
-  popup.style.display = "none";
+}
+const movieForm = document.querySelector(".movie-form");
+movieForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const titleInput = document.querySelector(".title-input").value;
+  const imgInput = document.querySelector(".img-input").value;
+  const genreSelect = document.querySelector(".genre").value;
+  const yearInput = Number(document.querySelector(".year-input").value);
+  const ratingInput = Number(document.querySelector(".rating-input").value);
+  const statusSelect = document.querySelector(".status").value;
+  const newMovie = {
+    title: titleInput,
+    image: imgInput,
+    genre: genreSelect,
+    year: yearInput,
+    ratings: ratingInput,
+    watched: false,
+    favourate: false,
+  };
+  if (statusSelect === "true") {
+    newMovie.watched = true;
+  } else {
+    newMovie.watched = false;
+  }
+  movieData.push(newMovie);
+  createMovieCard(newMovie);
 });

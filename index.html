@@ -154,30 +154,39 @@
         <form class="movie-form" action="#watchlist" method="get">
           <label class="model-field model-field-wide">
             <span>Movie title</span>
-            <input type="text" name="title" placeholder="e.g. The Grand Budapest Hotel" required />
+            <input type="text" name="title" placeholder="e.g. The Grand Budapest Hotel" required class="title-input" />
+          </label>
+          <label class="model-field model-field-wide">
+            <span>Poster image URL</span>
+            <input type="text" name="poster" class="img-input" placeholder="folder/poster.jpg" />
           </label>
           <div class="model-field-row">
             <label class="model-field">
               <span>Genre</span>
-              <select name="genre" required>
+              <select class="genre" name="genre" required>
                 <option value="" selected disabled>Select a genre</option>
                 <option>Drama</option>
                 <option>Comedy</option>
                 <option>Thriller</option>
                 <option>Sci-fi</option>
                 <option>Animation</option>
+                <option>Horror</option>
               </select>
             </label>
             <label class="model-field">
               <span>Release year</span>
-              <input type="number" name="year" placeholder="2024" min="1888" max="2100" />
+              <input type="number" class="year-input" name="year" placeholder="2024" min="1888" max="2100" />
             </label>
           </div>
           <label class="model-field model-field-wide">
+            <span>Rating (0–10)</span>
+            <input type="number" class="rating-input" name="rating" placeholder="e.g. 8.5" min="0" max="10" step="0.1" />
+          </label>
+          <label class="model-field model-field-wide">
             <span>Status</span>
-            <select name="status">
-              <option value="to-watch">To watch</option>
-              <option value="watched">Watched</option>
+            <select class="status" name="status">
+              <option value="false">To watch</option>
+              <option value="true">Watched</option>
             </select>
           </label>
           <div class="model-actions">
