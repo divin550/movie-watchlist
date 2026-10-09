@@ -98,22 +98,42 @@ function createMovieCard(movie) {
   movieCardsContainer.appendChild(movieCard);
   const movieStatus = movieCard.querySelector(".movie-status");
   const movieFav = movieCard.querySelector(".movie-favorite");
+  const totalMoviesVal = document.querySelector(".total-movies-val");
+  totalMoviesVal.innerHTML = movieData.length;
   let watch = movie.watched;
   movieStatus.innerHTML = "To watch";
   movieStatus.style.backgroundColor = "#8b5cf6";
+  let val = 0;
+  const toWatchVal = document.querySelector(".toWatched-val");
+  const newArr2 = movieData.filter((item) => {
+    return item.watched === false;
+  });
+  toWatchVal.innerHTML = newArr2.length;
   movieStatus.addEventListener("click", (e) => {
+    const watchedVal = document.querySelector(".watched-val");
     watch = !watch;
     movie.watched = watch;
     if (watch) {
       console.log(movie.watched);
-
+      val++;
+      watchedVal.innerHTML = val;
       movieStatus.innerHTML = "Watched";
       movieStatus.style.backgroundColor = "#10b981";
     } else {
       console.log(movie.watched);
+      val--;
+      watchedVal.innerHTML = val;
       movieStatus.innerHTML = "To watch";
       movieStatus.style.backgroundColor = "#8b5cf6";
     }
+    const newArr = movieData.filter((item) => {
+      return item.watched === true;
+    });
+    watchedVal.innerHTML = newArr.length;
+    const newArr2 = movieData.filter((item) => {
+      return item.watched === false;
+    });
+    toWatchVal.innerHTML = newArr2.length;
   });
   let fav = false;
   movieFav.addEventListener("click", (e) => {
@@ -135,6 +155,11 @@ function createMovieCard(movie) {
     });
     movieData.splice(0, movieData.length, ...newArr);
     movieCard.remove();
+    const newArr3 = movieData.filter((item) => {
+      return item.watched === false;
+    });
+    toWatchVal.innerHTML = newArr3.length;
+    totalMoviesVal.innerHTML = movieData.length;
   });
 }
 const movieForm = document.querySelector(".movie-form");
