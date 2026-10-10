@@ -2,6 +2,7 @@ const popup = document.querySelector(".model-overlay");
 const addBtn = document.querySelector(".add-btn");
 const cancelBtn = document.querySelector(".model-cancel");
 const movieSave = document.querySelector(".model-save");
+let movieToEdit = null;
 
 const movieData = [
   {
@@ -56,6 +57,9 @@ movieData.forEach((data) => {
 });
 
 addBtn.addEventListener("click", (e) => {
+  movieToEdit = null;
+  movieForm.reset();
+  movieSave.textContent = "Add Movie";
   popup.style.display = "block";
 });
 cancelBtn.addEventListener("click", (e) => {
@@ -148,6 +152,24 @@ function createMovieCard(movie) {
         "<i class='fa-regular fa-heart' aria-hidden='true'></i>";
     }
   });
+  const movieEdit = movieCard.querySelector(".movie-edit");
+  movieEdit.addEventListener("click", (e) => {
+    popup.style.display = "block";
+    movieSave.innerHTML = "Save";
+    const editTitel = document.querySelector(".title-input");
+    const editImg = document.querySelector(".img-input");
+    const editGenre = document.querySelector(".genre");
+    const editYear = document.querySelector(".year-input");
+    const editRating = document.querySelector(".rating-input");
+    const editStatus = document.querySelector(".status");
+    editTitel.value = movie.title;
+    editImg.value = movie.image;
+    editGenre.value = movie.genre;
+    editYear.value = movie.year;
+    editRating.value = movie.ratings;
+    editStatus.value = movie.watched;
+    movieToEdit = movie;
+  });
   const movieDelete = movieCard.querySelector(".movie-delete");
   movieDelete.addEventListener("click", (e) => {
     const newArr = movieData.filter((item) => {
@@ -185,6 +207,23 @@ movieForm.addEventListener("submit", (e) => {
   } else {
     newMovie.watched = false;
   }
-  movieData.push(newMovie);
-  createMovieCard(newMovie);
+  if (movieToEdit !== null) {
+    movieToEdit.title = newMovie.title;
+    movieToEdit.image = newMovie.image;
+    movieToEdit.genre = newMovie.genre;
+    movieToEdit.year = newMovie.year;
+    movieToEdit.ratings = newMovie.ratings;
+    movieToEdit.watched = newMovie.watched;
+
+    movieToEdit = null
+  } else {
+    movieData.push(newMovie);
+  }
+  document.querySelector(".movie-cards-container").innerHTML = "";
+
+  movieData.forEach((movie) => {
+    createMovieCard(movie);
+  });
+  // movieData.push(newMovie);
+  // createMovieCard(newMovie);
 });
