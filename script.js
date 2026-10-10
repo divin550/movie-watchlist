@@ -2,6 +2,7 @@ const popup = document.querySelector(".model-overlay");
 const addBtn = document.querySelector(".add-btn");
 const cancelBtn = document.querySelector(".model-cancel");
 const movieSave = document.querySelector(".model-save");
+const globalInput = document.querySelector(".search-input");
 let movieToEdit = null;
 
 const movieData = [
@@ -102,6 +103,22 @@ function createMovieCard(movie) {
   movieCardsContainer.appendChild(movieCard);
   const movieStatus = movieCard.querySelector(".movie-status");
   const movieFav = movieCard.querySelector(".movie-favorite");
+  let fav = false;
+  movieFav.addEventListener("click", (e) => {
+    fav = !fav;
+    movie.favourate = fav;
+    if (fav === true) {
+      console.log(movie.favourate);
+
+      movieFav.style.color = "#fbbf24";
+      movieFav.innerHTML = "<i class='fa-solid fa-heart'></i>";
+    } else {
+      console.log(movie.favourate);
+      movieFav.style.color = "white";
+      movieFav.innerHTML =
+        "<i class='fa-regular fa-heart' aria-hidden='true'></i>";
+    }
+  });
   const totalMoviesVal = document.querySelector(".total-movies-val");
   totalMoviesVal.innerHTML = movieData.length;
   let watch = movie.watched;
@@ -139,19 +156,7 @@ function createMovieCard(movie) {
     });
     toWatchVal.innerHTML = newArr2.length;
   });
-  let fav = false;
-  movieFav.addEventListener("click", (e) => {
-    fav = !fav;
-    movie.favourate = fav;
-    if (fav === true) {
-      movieFav.style.color = "#fbbf24";
-      movieFav.innerHTML = "<i class='fa-solid fa-heart'></i>";
-    } else {
-      movieFav.style.color = "white";
-      movieFav.innerHTML =
-        "<i class='fa-regular fa-heart' aria-hidden='true'></i>";
-    }
-  });
+
   const movieEdit = movieCard.querySelector(".movie-edit");
   movieEdit.addEventListener("click", (e) => {
     popup.style.display = "block";
@@ -215,7 +220,7 @@ movieForm.addEventListener("submit", (e) => {
     movieToEdit.ratings = newMovie.ratings;
     movieToEdit.watched = newMovie.watched;
 
-    movieToEdit = null
+    movieToEdit = null;
   } else {
     movieData.push(newMovie);
   }
@@ -224,6 +229,15 @@ movieForm.addEventListener("submit", (e) => {
   movieData.forEach((movie) => {
     createMovieCard(movie);
   });
-  // movieData.push(newMovie);
-  // createMovieCard(newMovie);
+});
+
+globalInput.addEventListener("input", (e) => {
+  let storeInput = e.target.value;
+  const newArr = movieData.filter((item) => {
+    return item.title.toLowerCase().includes(storeInput.toLowerCase());
+  });
+  movieCardsContainer.innerHTML = "";
+  newArr.forEach((data) => {
+    createMovieCard(data);
+  });
 });
