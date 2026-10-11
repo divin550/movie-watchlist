@@ -3,6 +3,7 @@ const addBtn = document.querySelector(".add-btn");
 const cancelBtn = document.querySelector(".model-cancel");
 const movieSave = document.querySelector(".model-save");
 const globalInput = document.querySelector(".search-input");
+const sidbarWatched = document.querySelector(".sidebar-watched")
 let movieToEdit = null;
 
 const movieData = [
@@ -241,3 +242,13 @@ globalInput.addEventListener("input", (e) => {
     createMovieCard(data);
   });
 });
+sidbarWatched.addEventListener("click", (e)=>{
+  e.preventDefault()
+  const newArr = movieData.filter((item)=>{return item.watched === true})
+  movieCardsContainer.innerHTML = ""
+  newArr.forEach((data)=>{
+    createMovieCard(data)
+    
+  })
+  
+})
