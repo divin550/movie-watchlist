@@ -5,6 +5,7 @@ const movieSave = document.querySelector(".model-save");
 const globalInput = document.querySelector(".search-input");
 const sidbarWatched = document.querySelector(".sidebar-watched");
 const sidebarFavorites = document.querySelector(".sidebar-favorites");
+const sidebarToWatch = document.querySelector(".sidebar-toWatch");
 let movieToEdit = null;
 
 const movieData = [
@@ -253,12 +254,19 @@ sidbarWatched.addEventListener("click", (e) => {
     createMovieCard(data);
   });
 });
-sidebarFavorites.addEventListener("click", (e)=>{
-  const newArr = movieData.filter((item)=>{return item.favourate === true})
+sidebarFavorites.addEventListener("click", (e) => {
+  const newArr = movieData.filter((item) => {
+    return item.favourate === true;
+  });
+  movieCardsContainer.innerHTML = "";
+  newArr.forEach((data) => {
+    createMovieCard(data);
+  });
+});
+sidebarToWatch.addEventListener("click", (e)=>{
+  const newArr = movieData.filter((item)=>{return item.watched === false})
   movieCardsContainer.innerHTML = ""
   newArr.forEach((data)=>{
     createMovieCard(data)
   })
-
-  
 })
