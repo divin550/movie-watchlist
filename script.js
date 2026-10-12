@@ -106,59 +106,56 @@ function createMovieCard(movie) {
   movieCardsContainer.appendChild(movieCard);
   const movieStatus = movieCard.querySelector(".movie-status");
   const movieFav = movieCard.querySelector(".movie-favorite");
-  let fav = false;
-  movieFav.addEventListener("click", (e) => {
-    fav = !fav;
-    movie.favourate = fav;
-    if (fav === true) {
-      console.log(movie.favourate);
-
+  function updateFavBtn() {
+    if (movie.favourate) {
       movieFav.style.color = "#fbbf24";
       movieFav.innerHTML = "<i class='fa-solid fa-heart'></i>";
     } else {
-      console.log(movie.favourate);
       movieFav.style.color = "white";
       movieFav.innerHTML =
         "<i class='fa-regular fa-heart' aria-hidden='true'></i>";
     }
+  }
+  updateFavBtn();
+  movieFav.addEventListener("click", (e) => {
+    movie.favourate = !movie.favourate;
+    updateFavBtn();
   });
   const totalMoviesVal = document.querySelector(".total-movies-val");
   totalMoviesVal.innerHTML = movieData.length;
-  let watch = movie.watched;
   movieStatus.innerHTML = "To watch";
   movieStatus.style.backgroundColor = "#8b5cf6";
-  let val = 0;
   const toWatchVal = document.querySelector(".toWatched-val");
+  const watchedVal = document.querySelector(".watched-val")
   const newArr2 = movieData.filter((item) => {
     return item.watched === false;
   });
   toWatchVal.innerHTML = newArr2.length;
-  movieStatus.addEventListener("click", (e) => {
-    const watchedVal = document.querySelector(".watched-val");
-    watch = !watch;
-    movie.watched = watch;
-    if (watch) {
-      console.log(movie.watched);
-      val++;
-      watchedVal.innerHTML = val;
+  function updateMovieStatus() {
+    if (movie.watched) {
       movieStatus.innerHTML = "Watched";
       movieStatus.style.backgroundColor = "#10b981";
     } else {
-      console.log(movie.watched);
-      val--;
-      watchedVal.innerHTML = val;
       movieStatus.innerHTML = "To watch";
       movieStatus.style.backgroundColor = "#8b5cf6";
     }
-    const newArr = movieData.filter((item) => {
-      return item.watched === true;
-    });
-    watchedVal.innerHTML = newArr.length;
-    const newArr2 = movieData.filter((item) => {
-      return item.watched === false;
-    });
-    toWatchVal.innerHTML = newArr2.length;
-  });
+    console.log(movie.watched);
+    
+  }
+  updateMovieStatus()
+  movieStatus.addEventListener("click", (e)=>{
+    movie.watched = !movie.watched
+    updateMovieStatus()
+    const newArr = movieData.filter((item)=>{
+      return item.watched === true
+    })
+    watchedVal.innerHTML = newArr.length
+    const newArr2 = movieData.filter((item)=>{
+      return item.watched === false
+    })
+    toWatchVal.innerHTML = newArr2.length
+    
+  })
 
   const movieEdit = movieCard.querySelector(".movie-edit");
   movieEdit.addEventListener("click", (e) => {
@@ -263,10 +260,12 @@ sidebarFavorites.addEventListener("click", (e) => {
     createMovieCard(data);
   });
 });
-sidebarToWatch.addEventListener("click", (e)=>{
-  const newArr = movieData.filter((item)=>{return item.watched === false})
-  movieCardsContainer.innerHTML = ""
-  newArr.forEach((data)=>{
-    createMovieCard(data)
-  })
-})
+sidebarToWatch.addEventListener("click", (e) => {
+  const newArr = movieData.filter((item) => {
+    return item.watched === false;
+  });
+  movieCardsContainer.innerHTML = "";
+  newArr.forEach((data) => {
+    createMovieCard(data);
+  });
+});
