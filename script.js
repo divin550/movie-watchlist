@@ -126,7 +126,7 @@ function createMovieCard(movie) {
   movieStatus.innerHTML = "To watch";
   movieStatus.style.backgroundColor = "#8b5cf6";
   const toWatchVal = document.querySelector(".toWatched-val");
-  const watchedVal = document.querySelector(".watched-val")
+  const watchedVal = document.querySelector(".watched-val");
   const newArr2 = movieData.filter((item) => {
     return item.watched === false;
   });
@@ -140,22 +140,20 @@ function createMovieCard(movie) {
       movieStatus.style.backgroundColor = "#8b5cf6";
     }
     console.log(movie.watched);
-    
   }
-  updateMovieStatus()
-  movieStatus.addEventListener("click", (e)=>{
-    movie.watched = !movie.watched
-    updateMovieStatus()
-    const newArr = movieData.filter((item)=>{
-      return item.watched === true
-    })
-    watchedVal.innerHTML = newArr.length
-    const newArr2 = movieData.filter((item)=>{
-      return item.watched === false
-    })
-    toWatchVal.innerHTML = newArr2.length
-    
-  })
+  updateMovieStatus();
+  movieStatus.addEventListener("click", (e) => {
+    movie.watched = !movie.watched;
+    updateMovieStatus();
+    const newArr = movieData.filter((item) => {
+      return item.watched === true;
+    });
+    watchedVal.innerHTML = newArr.length;
+    const newArr2 = movieData.filter((item) => {
+      return item.watched === false;
+    });
+    toWatchVal.innerHTML = newArr2.length;
+  });
 
   const movieEdit = movieCard.querySelector(".movie-edit");
   movieEdit.addEventListener("click", (e) => {
@@ -250,6 +248,12 @@ sidbarWatched.addEventListener("click", (e) => {
   newArr.forEach((data) => {
     createMovieCard(data);
   });
+  if (newArr.length === 0) {
+    movieCardsContainer.style.textAlign = "center";
+    movieCardsContainer.style.letterSpacing = "3px";
+    movieCardsContainer.style.color = "#c2c2c25f";
+    movieCardsContainer.innerHTML = "<h1>THERE'S NO WATCHED MOVIE YET</h1>";
+  }
 });
 sidebarFavorites.addEventListener("click", (e) => {
   const newArr = movieData.filter((item) => {
