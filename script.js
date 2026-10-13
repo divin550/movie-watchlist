@@ -167,11 +167,11 @@ function createMovieCard(movie) {
     toWatchVal.innerHTML = toWatchMovies.length;
   }
   updateMovieStatus();
-  updateMovieCounters()
+  updateMovieCounters();
   movieStatus.addEventListener("click", (e) => {
     movie.watched = !movie.watched;
     updateMovieStatus();
-    updateMovieCounters()
+    updateMovieCounters();
     saveMovies();
   });
 
@@ -261,21 +261,40 @@ globalInput.addEventListener("input", (e) => {
     createMovieCard(data);
   });
 });
+let showingWatched = false;
 sidbarWatched.addEventListener("click", (e) => {
   e.preventDefault();
-  const newArr = movieData.filter((item) => {
-    return item.watched === true;
-  });
-  movieCardsContainer.innerHTML = "";
-  newArr.forEach((data) => {
-    createMovieCard(data);
-  });
-  if (newArr.length === 0) {
-    movieCardsContainer.style.textAlign = "center";
-    movieCardsContainer.style.letterSpacing = "3px";
-    movieCardsContainer.style.color = "#c2c2c25f";
-    movieCardsContainer.innerHTML =
-      "<h1 class='no-movies'>THERE'S NO WATCHED MOVIE YET</h1>";
+
+  if (showingWatched === false) {
+    // First click: show watched movies
+    showingWatched = true;
+
+    const newArr = movieData.filter((item) => {
+      return item.watched === true;
+    });
+
+    movieCardsContainer.innerHTML = "";
+
+    newArr.forEach((data) => {
+      createMovieCard(data);
+    });
+
+    if (newArr.length === 0) {
+      movieCardsContainer.style.textAlign = "center";
+      movieCardsContainer.style.letterSpacing = "3px";
+      movieCardsContainer.style.color = "#c2c2c25f";
+      movieCardsContainer.innerHTML =
+        "<h1 class='no-movies'>THERE'S NO WATCHED MOVIE YET</h1>";
+    }
+  } else {
+    // Second click: show all movies
+    showingWatched = false;
+
+    movieCardsContainer.innerHTML = "";
+
+    movieData.forEach((data) => {
+      createMovieCard(data);
+    });
   }
 });
 sidebarFavorites.addEventListener("click", (e) => {
