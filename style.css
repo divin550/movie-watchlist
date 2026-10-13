@@ -191,6 +191,11 @@ body {
   gap: 18px;
   margin: 24px;
 }
+.no-movies {
+  grid-column: 1 / -1;
+  text-align: center;
+  width: 100%;
+}
 .movie-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -862,7 +867,6 @@ body {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
-
 
 
 

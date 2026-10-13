@@ -8,7 +8,7 @@ const sidebarFavorites = document.querySelector(".sidebar-favorites");
 const sidebarToWatch = document.querySelector(".sidebar-toWatch");
 let movieToEdit = null;
 
-const movieData = [
+const defaultMovies = [
   {
     title: "Inception",
     year: 2010,
@@ -55,6 +55,17 @@ const movieData = [
     ratings: 8.9,
   },
 ];
+const savedMovies = localStorage.getItem("movie");
+let movieData;
+if (savedMovies !== null) {
+  movieData = JSON.parse(savedMovies);
+} else {
+  movieData = defaultMovies;
+}
+function saveMovies() {
+  const setMovies = JSON.stringify(movieData);
+  localStorage.setItem("movie", setMovies);
+}
 const movieCardsContainer = document.querySelector(".movie-cards-container");
 movieData.forEach((data) => {
   createMovieCard(data);
@@ -120,6 +131,7 @@ function createMovieCard(movie) {
   movieFav.addEventListener("click", (e) => {
     movie.favourate = !movie.favourate;
     updateFavBtn();
+    saveMovies();
   });
   const totalMoviesVal = document.querySelector(".total-movies-val");
   totalMoviesVal.innerHTML = movieData.length;
@@ -141,18 +153,26 @@ function createMovieCard(movie) {
     }
     console.log(movie.watched);
   }
+  function updateMovieCounters() {
+    const watchedMovies = movieData.filter((item) => {
+      return item.watched === true;
+    });
+
+    watchedVal.innerHTML = watchedMovies.length;
+
+    const toWatchMovies = movieData.filter((item) => {
+      return item.watched === false;
+    });
+
+    toWatchVal.innerHTML = toWatchMovies.length;
+  }
   updateMovieStatus();
+  updateMovieCounters()
   movieStatus.addEventListener("click", (e) => {
     movie.watched = !movie.watched;
     updateMovieStatus();
-    const newArr = movieData.filter((item) => {
-      return item.watched === true;
-    });
-    watchedVal.innerHTML = newArr.length;
-    const newArr2 = movieData.filter((item) => {
-      return item.watched === false;
-    });
-    toWatchVal.innerHTML = newArr2.length;
+    updateMovieCounters()
+    saveMovies();
   });
 
   const movieEdit = movieCard.querySelector(".movie-edit");
@@ -185,6 +205,7 @@ function createMovieCard(movie) {
     });
     toWatchVal.innerHTML = newArr3.length;
     totalMoviesVal.innerHTML = movieData.length;
+    saveMovies();
   });
 }
 const movieForm = document.querySelector(".movie-form");
@@ -222,6 +243,7 @@ movieForm.addEventListener("submit", (e) => {
   } else {
     movieData.push(newMovie);
   }
+  saveMovies();
   document.querySelector(".movie-cards-container").innerHTML = "";
 
   movieData.forEach((movie) => {
@@ -252,7 +274,8 @@ sidbarWatched.addEventListener("click", (e) => {
     movieCardsContainer.style.textAlign = "center";
     movieCardsContainer.style.letterSpacing = "3px";
     movieCardsContainer.style.color = "#c2c2c25f";
-    movieCardsContainer.innerHTML = "<h1>THERE'S NO WATCHED MOVIE YET</h1>";
+    movieCardsContainer.innerHTML =
+      "<h1 class='no-movies'>THERE'S NO WATCHED MOVIE YET</h1>";
   }
 });
 sidebarFavorites.addEventListener("click", (e) => {
@@ -263,6 +286,13 @@ sidebarFavorites.addEventListener("click", (e) => {
   newArr.forEach((data) => {
     createMovieCard(data);
   });
+  if (newArr.length === 0) {
+    movieCardsContainer.style.textAlign = "center";
+    movieCardsContainer.style.letterSpacing = "3px";
+    movieCardsContainer.style.color = "#c2c2c25f";
+    movieCardsContainer.innerHTML =
+      "<h1 class='no-movies'>THERE'S NO FAVOURITE MOVIE YET</h1>";
+  }
 });
 sidebarToWatch.addEventListener("click", (e) => {
   const newArr = movieData.filter((item) => {
@@ -272,4 +302,11 @@ sidebarToWatch.addEventListener("click", (e) => {
   newArr.forEach((data) => {
     createMovieCard(data);
   });
+  if (newArr.length === 0) {
+    movieCardsContainer.style.textAlign = "center";
+    movieCardsContainer.style.letterSpacing = "3px";
+    movieCardsContainer.style.color = "#c2c2c25f";
+    movieCardsContainer.innerHTML =
+      "<h1 class='no-movies'>THERE'S NO TO-WATCH MOVIE YET</h1>";
+  }
 });
