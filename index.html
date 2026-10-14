@@ -120,10 +120,17 @@
             <span>Movie title</span>
             <input type="text" name="title" placeholder="e.g. The Grand Budapest Hotel" required class="title-input" />
           </label>
+          
           <label class="model-field model-field-wide">
-            <span>Poster image URL</span>
-            <input type="text" name="poster" class="img-input" placeholder="folder/poster.jpg" />
+            <span>Choose poster image</span>
+            <input
+              type="file"
+              name="poster"
+              class="img-input"
+              accept="image/*"
+            />
           </label>
+
           <div class="model-field-row">
             <label class="model-field">
               <span>Genre</span>

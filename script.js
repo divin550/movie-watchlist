@@ -213,14 +213,20 @@ const movieForm = document.querySelector(".movie-form");
 movieForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const titleInput = document.querySelector(".title-input").value;
-  const imgInput = document.querySelector(".img-input").value;
+  const imgInput = document.querySelector(".img-input");
+  const imageFile = imgInput.files[0];
   const genreSelect = document.querySelector(".genre").value;
   const yearInput = Number(document.querySelector(".year-input").value);
   const ratingInput = Number(document.querySelector(".rating-input").value);
   const statusSelect = document.querySelector(".status").value;
+  let imageURL = "";
+
+  if (imageFile) {
+    imageURL = URL.createObjectURL(imageFile);
+  }
   const newMovie = {
     title: titleInput,
-    image: imgInput,
+    image: imageURL,
     genre: genreSelect,
     year: yearInput,
     ratings: ratingInput,
@@ -314,6 +320,5 @@ sidebarToWatch.addEventListener("click", (e) => {
     movieCardsContainer.style.color = "#c2c2c25f";
     movieCardsContainer.innerHTML =
       "<h1 class='no-movies'>THERE'S NO TO-WATCH MOVIE YET</h1>";
-      const h1 = document.querySelector(".no-movies");
   }
 });
