@@ -458,6 +458,20 @@ body {
 .model-field input::placeholder {
   color: var(--text-muted);
 }
+.model-field input[type="file"]::file-selector-button {
+  align-self: center;
+  background: var(--bg-primary);
+  border: 0;
+  border-right: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font: inherit;
+  margin-right: 12px;
+}
+.model-field input[type="file"] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
 .model-field input:focus,
 .model-field select:focus {
   border-color: var(--accent-blue);
