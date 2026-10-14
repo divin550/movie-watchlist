@@ -261,40 +261,20 @@ globalInput.addEventListener("input", (e) => {
     createMovieCard(data);
   });
 });
-let showingWatched = false;
 sidbarWatched.addEventListener("click", (e) => {
   e.preventDefault();
-
-  if (showingWatched === false) {
-    // First click: show watched movies
-    showingWatched = true;
-
-    const newArr = movieData.filter((item) => {
-      return item.watched === true;
-    });
-
-    movieCardsContainer.innerHTML = "";
-
-    newArr.forEach((data) => {
-      createMovieCard(data);
-    });
-
-    if (newArr.length === 0) {
-      movieCardsContainer.style.textAlign = "center";
-      movieCardsContainer.style.letterSpacing = "3px";
-      movieCardsContainer.style.color = "#c2c2c25f";
-      movieCardsContainer.innerHTML =
-        "<h1 class='no-movies'>THERE'S NO WATCHED MOVIE YET</h1>";
-    }
-  } else {
-    // Second click: show all movies
-    showingWatched = false;
-
-    movieCardsContainer.innerHTML = "";
-
-    movieData.forEach((data) => {
-      createMovieCard(data);
-    });
+  const newArr = movieData.filter((item) => {
+    return item.watched === true;
+  });
+  movieCardsContainer.innerHTML = "";
+  newArr.forEach((data) => {
+    createMovieCard(data);
+  });
+  if (newArr.length === 0) {
+    movieCardsContainer.style.textAlign = "center";
+    movieCardsContainer.style.color = "#c2c2c25f";
+    movieCardsContainer.innerHTML =
+      "<h1 class='no-movies'>THERE'S NO WATCHED MOVIE YET</h1>";
   }
 });
 sidebarFavorites.addEventListener("click", (e) => {
@@ -307,7 +287,6 @@ sidebarFavorites.addEventListener("click", (e) => {
   });
   if (newArr.length === 0) {
     movieCardsContainer.style.textAlign = "center";
-    movieCardsContainer.style.letterSpacing = "3px";
     movieCardsContainer.style.color = "#c2c2c25f";
     movieCardsContainer.innerHTML =
       "<h1 class='no-movies'>THERE'S NO FAVOURITE MOVIE YET</h1>";
@@ -323,9 +302,9 @@ sidebarToWatch.addEventListener("click", (e) => {
   });
   if (newArr.length === 0) {
     movieCardsContainer.style.textAlign = "center";
-    movieCardsContainer.style.letterSpacing = "3px";
     movieCardsContainer.style.color = "#c2c2c25f";
     movieCardsContainer.innerHTML =
       "<h1 class='no-movies'>THERE'S NO TO-WATCH MOVIE YET</h1>";
+      const h1 = document.querySelector(".no-movies");
   }
 });
