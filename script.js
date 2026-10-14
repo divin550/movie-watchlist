@@ -3,6 +3,7 @@ const addBtn = document.querySelector(".add-btn");
 const cancelBtn = document.querySelector(".model-cancel");
 const movieSave = document.querySelector(".model-save");
 const globalInput = document.querySelector(".search-input");
+const sidebarAllMovies = document.querySelector(".sidebar-allMovies");
 const sidbarWatched = document.querySelector(".sidebar-watched");
 const sidebarFavorites = document.querySelector(".sidebar-favorites");
 const sidebarToWatch = document.querySelector(".sidebar-toWatch");
@@ -258,6 +259,14 @@ globalInput.addEventListener("input", (e) => {
   });
   movieCardsContainer.innerHTML = "";
   newArr.forEach((data) => {
+    createMovieCard(data);
+  });
+});
+sidebarAllMovies.addEventListener("click", (e) => {
+  e.preventDefault();
+  globalInput.value = "";
+  movieCardsContainer.innerHTML = "";
+  movieData.forEach((data) => {
     createMovieCard(data);
   });
 });
