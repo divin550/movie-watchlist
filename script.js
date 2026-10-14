@@ -55,13 +55,86 @@ const defaultMovies = [
     favourate: false,
     ratings: 8.9,
   },
+  {
+    title: "The Dictator",
+    year: 2012,
+    genre: "Comedy",
+    image: "assets/theDictator.jpg",
+    watched: false,
+    favourate: false,
+    ratings: 8.5,
+  },
+  {
+    title: "Superbad",
+    year: 2007,
+    genre: "Comedy",
+    image: "assets/Superbad.jpg",
+    watched: false,
+    favourate: false,
+    ratings: 8.8,
+  },
+  {
+    title: "Dead poet's society",
+    year: 1989,
+    genre: "Drama",
+    image: "assets/deadPoetsSociety.jpg",
+    watched: false,
+    favourate: false,
+    ratings: 9.3,
+  },
+  {
+    title: "Good Will Hunting",
+    year: 1997,
+    genre: "Drama",
+    image: "assets/GoodWillHunting.jpg",
+    watched: false,
+    favourate: false,
+    ratings: 8.9,
+  },
+  {
+    title: "Peaky Blinders",
+    year: 2013,
+    genre: "Action",
+    image: "assets/PeakyBlinders.jpg",
+    watched: false,
+    favourate: false,
+    ratings: 8.9,
+  },
+  {
+    title: "Tokyo Revengers",
+    year: 2021,
+    genre: "Anime",
+    image: "assets/tokyoRevengers.jpg",
+    watched: false,
+    favourate: false,
+    ratings: 9.1,
+  },
+  {
+    title: "Attack on Titan",
+    year: 2013,
+    genre: "Anime",
+    image: "assets/AttackOnTitan.jpg",
+    watched: false,
+    favourate: false,
+    ratings: 9.2,
+  }
 ];
 const savedMovies = localStorage.getItem("movie");
 let movieData;
 if (savedMovies !== null) {
   movieData = JSON.parse(savedMovies);
+  defaultMovies.forEach((defaultMovies) => {
+    const movieExits = movieData.some(
+      (movie) => movie.title === defaultMovies.title,
+    );
+    if (!movieExits) {
+      movieData.push(defaultMovies);
+    }
+  });
+  saveMovies();
 } else {
-  movieData = defaultMovies;
+  movieData = [...defaultMovies];
+  saveMovies();
 }
 function saveMovies() {
   const setMovies = JSON.stringify(movieData);
@@ -187,7 +260,7 @@ function createMovieCard(movie) {
     const editRating = document.querySelector(".rating-input");
     const editStatus = document.querySelector(".status");
     editTitel.value = movie.title;
-    editImg.value = movie.image;
+    // editImg.value = movie.image;
     editGenre.value = movie.genre;
     editYear.value = movie.year;
     editRating.value = movie.ratings;
@@ -212,6 +285,7 @@ function createMovieCard(movie) {
 const movieForm = document.querySelector(".movie-form");
 movieForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  console.log("Form submitted", movieToEdit);
   const titleInput = document.querySelector(".title-input").value;
   const imgInput = document.querySelector(".img-input");
   const imageFile = imgInput.files[0];
@@ -219,10 +293,13 @@ movieForm.addEventListener("submit", (e) => {
   const yearInput = Number(document.querySelector(".year-input").value);
   const ratingInput = Number(document.querySelector(".rating-input").value);
   const statusSelect = document.querySelector(".status").value;
+
   let imageURL = "";
 
   if (imageFile) {
     imageURL = URL.createObjectURL(imageFile);
+  } else if (movieToEdit !== null) {
+    imageURL = movieToEdit.image;
   }
   const newMovie = {
     title: titleInput,
