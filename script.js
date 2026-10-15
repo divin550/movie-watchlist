@@ -399,3 +399,25 @@ sidebarToWatch.addEventListener("click", (e) => {
       "<h1 class='no-movies'>THERE'S NO TO-WATCH MOVIE YET</h1>";
   }
 });
+const sidebarDrama = document.querySelector(".sidebar-drama")
+sidebarDrama.addEventListener("click", (e)=>{
+  const newArr = movieData.filter((item)=>{return item.genre === "Drama"})
+  movieCardsContainer.innerHTML = ""
+  newArr.forEach((data)=>{
+    createMovieCard(data)
+  })
+  
+  
+
+})
+const sidebarComedy = document.querySelector(".sidebar-comedy")
+sidebarComedy.addEventListener("click", (e)=>{
+  const newArr = movieData.filter((item)=>{return item.genre === "Comedy"})
+  movieCardsContainer.innerHTML = ""
+  newArr.forEach((data)=>{
+    createMovieCard(data)
+  })
+  
+  
+
+})
